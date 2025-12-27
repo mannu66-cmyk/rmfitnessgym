@@ -11,6 +11,6 @@ public class BaseController {
     @GetMapping 
     public String check() {
 
-        return "running......";
+        return "running.........";
     }
 }
