@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: FitnessRM
+  datasource:
+    url: jdbc:postgresql://my-postgres-db.c7w0aoa0u399.ap-south-1.rds.amazonaws.com/postgres
+    username: postgres
+    password: Manojrawat05
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8080
+  servlet:
+    context-path: /fitnessrm
+jwt:
+  secret: mySuperSecretKeyForJWTGeneration123456
+  expiration: 86400000
