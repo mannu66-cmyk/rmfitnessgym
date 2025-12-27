@@ -16,7 +16,7 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:4200","http://3.7.104.186:8080","http://info-angular-app-2025.s3-website.ap-south-1.amazonaws.com"));
+        config.setAllowedOrigins(List.of("http://localhost:4200","https://d1dd3v3n3zjtgf.cloudfront.net/","http://3.7.104.186:8080","http://info-angular-app-2025.s3-website.ap-south-1.amazonaws.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setExposedHeaders(List.of("Authorization"));
