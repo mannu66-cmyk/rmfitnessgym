@@ -17,13 +17,15 @@ public class MemberResponse {
     private Integer age;
     private LocalDate expiryDate;
 	 
-	public MemberResponse(String name, String mobile, String plan, String status, LocalDate expiryDate) {
+	public MemberResponse(String name, String mobile, String plan, String status, LocalDate expiryDate, String pin, Integer age) {
 		 
 		this.name = name;
 		this.mobile = mobile;
 		this.plan = plan;
 		this.status = status;
 		this.expiryDate = expiryDate;
+		this.pin = pin;
+		this.age = age;
 	}
 	public String getName() {
 		return name;
