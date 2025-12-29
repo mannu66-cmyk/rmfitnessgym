@@ -57,11 +57,11 @@ public class MemberService {
             .map(m -> new MemberResponse(
                 m.getName(),
                 m.getMobile(),
-				m.getPin(),
-				m.getAge(),
                 m.getPlan(),
                 m.getActive() ? "Active" : "Expired",
-                m.getExpiryDate()
+                m.getExpiryDate(),
+				m.getPin(),
+				m.getAge()
             ))
             .collect(Collectors.toList());
     }
