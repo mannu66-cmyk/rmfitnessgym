@@ -1,6 +1,5 @@
 package com.gymnasium.FitnessRM.repository;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +11,7 @@ import com.gymnasium.FitnessRM.entity.Member;
 @Repository
 public interface MemberRepo extends JpaRepository<Member, Long> {
 
-    Optional<Member> findByMobile(String mobile);
+	Optional<Member> findByMobile(String mobile);
 
-    List<Member> findByActive(Boolean active);
+	List<Member> findByActive(Boolean active);
 }

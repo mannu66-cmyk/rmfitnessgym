@@ -20,41 +20,29 @@ import com.gymnasium.FitnessRM.service.MemberService;
 
 @RestController
 @RequestMapping("/api/members")
-@CrossOrigin
 public class MemberController {
 
 	@Autowired
-    private MemberService memberService;
+	private MemberService memberService;
 
-    // ADD / UPDATE MEMBER
-    @PostMapping
-    public ResponseEntity<?> saveMember(@RequestBody MemberRequest req) {
-        memberService.saveOrUpdate(req);
-        return ResponseEntity.ok("Member saved successfully");
-    }
+	// ADD / UPDATE MEMBER
+	@PostMapping
+	public ResponseEntity<?> saveMember(@RequestBody MemberRequest req) {
+		memberService.saveOrUpdate(req);
+		return ResponseEntity.ok("Member saved successfully");
+	}
 
-    // LIST MEMBERS (ALL / ACTIVE / EXPIRED)
-    @GetMapping
-    public List<MemberResponse> listMembers(
-        @RequestParam(defaultValue = "all") String filter
-    ) {
-        return memberService.getAll(filter);
-    }
+	// LIST MEMBERS (ALL / ACTIVE / EXPIRED)
+	@GetMapping
+	public List<MemberResponse> listMembers(@RequestParam(defaultValue = "all") String filter) {
+		return memberService.getAll(filter);
+	}
 
-    // SEARCH BY MOBILE (Attendance Screen)
-    @GetMapping("/{mobile}")
-    public MemberResponse getByMobile(@PathVariable String mobile) {
-        Member m = memberService.getByMobile(mobile);
-        return new MemberResponse(
-        		m.getId(),
-                m.getName(),
-                m.getMobile(),
-                m.getPlan(),
-                m.getActive() ? "Active" : "Expired",
-				m.getPin(),
-				m.getAge(),
-				m.getStartDate(),
-				m.getExpiryDate()
-        );
-    }
+	// SEARCH BY MOBILE (Attendance Screen)
+	@GetMapping("/{mobile}")
+	public MemberResponse getByMobile(@PathVariable String mobile) {
+		Member m = memberService.getByMobile(mobile);
+		return new MemberResponse(m.getId(), m.getName(), m.getMobile(), m.getPlan(),
+				m.getActive() ? "Active" : "Expired", m.getPin(), m.getAge(), m.getStartDate(), m.getExpiryDate());
+	}
 }

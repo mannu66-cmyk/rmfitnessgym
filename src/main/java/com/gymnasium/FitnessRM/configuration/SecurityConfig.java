@@ -18,33 +18,25 @@ import com.gymnasium.FitnessRM.utils.JwtUtil;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final JwtUtil jwtUtil;
-    private final UserDetailsService userDetailsService;
+	private final JwtUtil jwtUtil;
+	private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(JwtUtil jwtUtil,
-                          UserDetailsService userDetailsService) {
-        this.jwtUtil = jwtUtil;
-        this.userDetailsService = userDetailsService;
-    }
+	public SecurityConfig(JwtUtil jwtUtil, UserDetailsService userDetailsService) {
+		this.jwtUtil = jwtUtil;
+		this.userDetailsService = userDetailsService;
+	}
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http)
-            throws Exception {
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        JwtAuthFilter jwtAuthFilter =
-                new JwtAuthFilter(jwtUtil, userDetailsService);
+		JwtAuthFilter jwtAuthFilter = new JwtAuthFilter(jwtUtil, userDetailsService);
 
-        http
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/login").permitAll()
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtAuthFilter,
-                UsernamePasswordAuthenticationFilter.class);
+		http.csrf(csrf -> csrf.disable())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(
+						auth -> auth.requestMatchers("/auth/login","/").permitAll().anyRequest().authenticated())
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+		return http.build();
+	}
 }

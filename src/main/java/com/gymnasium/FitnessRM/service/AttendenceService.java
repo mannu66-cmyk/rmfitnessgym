@@ -21,53 +21,52 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class AttendenceService {
 
-    private FitnessRmApplication fitnessRmApplication;
+	private FitnessRmApplication fitnessRmApplication;
 
 	@Autowired
-    private  MemberRepo memberRepo;
+	private MemberRepo memberRepo;
 	@Autowired
-    private  AttendenceRepo attendanceRepo;
+	private AttendenceRepo attendanceRepo;
 
-    AttendenceService(FitnessRmApplication fitnessRmApplication) {
-        this.fitnessRmApplication = fitnessRmApplication;
-    }
+	AttendenceService(FitnessRmApplication fitnessRmApplication) {
+		this.fitnessRmApplication = fitnessRmApplication;
+	}
 
-    public String markAttendance(String mobile, String pin) {
-        Member member = memberRepo.findByMobile(mobile)
-            .orElseThrow(() -> new RuntimeException("Member not found"));
+	public String markAttendance(String mobile, String pin) {
+		Member member = memberRepo.findByMobile(mobile).orElseThrow(() -> new RuntimeException("Member not found"));
 
-        if (!member.getPin().equals(pin)) {
-        	return "Invalid PIN";
-        }
-        if(!member.getActive()) {
-        	return "Package is expired.";
-        }
-        Attendence attendance = new Attendence();
-        attendance.setMember(member);
-        attendance.setDate(LocalDate.now());
-        attendance.setTime(LocalTime.now());
+		if (!member.getPin().equals(pin)) {
+			return "Invalid PIN";
+		}
+		if (!member.getActive()) {
+			return "Package is expired.";
+		}
+		Attendence attendance = new Attendence();
+		attendance.setMember(member);
+		attendance.setDate(LocalDate.now());
+		attendance.setTime(LocalTime.now());
 
-        attendanceRepo.save(attendance);
-        return "Attendance marked successfully.";
-    }
+		attendanceRepo.save(attendance);
+		return "Attendance marked successfully.";
+	}
 
-    public List<AttendenceResponse> getHistory(String mobile, String filter) {
-        LocalDate now = LocalDate.now();
-        LocalDate start;
+	public List<AttendenceResponse> getHistory(String mobile, String filter) {
+		LocalDate now = LocalDate.now();
+		LocalDate start;
 
-        switch (filter) {
-            case "day" -> start = now;
-            case "week" -> start = now.minusDays(7);
-            case "month" -> start = now.withDayOfMonth(1);
-            case "year" -> start = now.withDayOfYear(1);
-            default -> throw new RuntimeException("Invalid filter");
-        }
-        List<AttendenceResponse> attendences = new ArrayList<>();
-       List<Map<String, Object>> datas = attendanceRepo.findByMobileAndDate(mobile ,start ,now); 
-        for(Map<String, Object> data:datas) {
-        	attendences.add(new AttendenceResponse( data.get("name").toString(),
-data.get("mobile").toString(),data.get("date").toString(),data.get("time").toString()));  }
-        return attendences;
-    }
+		switch (filter) {
+		case "day" -> start = now;
+		case "week" -> start = now.minusDays(7);
+		case "month" -> start = now.withDayOfMonth(1);
+		case "year" -> start = now.withDayOfYear(1);
+		default -> throw new RuntimeException("Invalid filter");
+		}
+		List<AttendenceResponse> attendences = new ArrayList<>();
+		List<Map<String, Object>> datas = attendanceRepo.findByMobileAndDate(mobile, start, now);
+		for (Map<String, Object> data : datas) {
+			attendences.add(new AttendenceResponse(data.get("name").toString(), data.get("mobile").toString(),
+					data.get("date").toString(), data.get("time").toString()));
+		}
+		return attendences;
+	}
 }
-

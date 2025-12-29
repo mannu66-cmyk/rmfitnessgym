@@ -15,24 +15,23 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
-@Table(name = "package",schema = "gym")
+@Table(name = "package", schema = "gym")
 @Data
 public class Package {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String name;
-    private Integer price;
+	private String name;
+	private Integer price;
 
-    private LocalDate date;
-   
-    @JoinColumn 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Member member;
+	private LocalDate date;
+
+	@JoinColumn
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private Member member;
 
 	public Long getId() {
 		return id;
@@ -74,13 +73,11 @@ public class Package {
 		this.name = name;
 	}
 
-	public Package( Integer price, LocalDate date, Member member, String name) {
+	public Package(Integer price, LocalDate date, Member member, String name) {
 		this.price = price;
-		this.name = name; 
+		this.name = name;
 		this.date = date;
 		this.member = member;
 	}
-    
-    
-    
+
 }

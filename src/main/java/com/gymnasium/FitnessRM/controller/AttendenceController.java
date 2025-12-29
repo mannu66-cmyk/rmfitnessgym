@@ -25,21 +25,18 @@ import lombok.RequiredArgsConstructor;
 public class AttendenceController {
 
 	@Autowired
-    private AttendenceService attendanceService;
+	private AttendenceService attendanceService;
 
-    // MARK ATTENDANCE
-    @PostMapping("/mark")
-    public ResponseEntity<?> markAttendance(@RequestBody AttendenceDTO req) {
-    	 return ResponseEntity.ok(attendanceService.markAttendance(req.getMobile(), req.getPin()));
-    }
+	// MARK ATTENDANCE
+	@PostMapping("/mark")
+	public ResponseEntity<?> markAttendance(@RequestBody AttendenceDTO req) {
+		return ResponseEntity.ok(attendanceService.markAttendance(req.getMobile(), req.getPin()));
+	}
 
-    // ATTENDANCE HISTORY
-    @GetMapping("/history")
-    public List<AttendenceResponse> history(
-        @RequestParam String mobile,
-        @RequestParam String filter
-    ) {
-    	return attendanceService.getHistory(mobile, filter);
-         
-    }
+	// ATTENDANCE HISTORY
+	@GetMapping("/history")
+	public List<AttendenceResponse> history(@RequestParam String mobile, @RequestParam String filter) {
+		return attendanceService.getHistory(mobile, filter);
+
+	}
 }

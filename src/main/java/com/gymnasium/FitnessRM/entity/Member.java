@@ -12,30 +12,29 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
-@Table(name = "member",schema = "gym")
+@Table(name = "member", schema = "gym")
 @Data
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private String name;
+	private String name;
 
-    @Column(unique = true)
-    private String mobile;
+	@Column(unique = true)
+	private String mobile;
 
-    private Integer age;
+	private Integer age;
 
-    private String pin;
+	private String pin;
 
-    private String plan;        // 1 Month, 3 Months, etc.
-    private LocalDate startDate;
-    private LocalDate expiryDate;
+	private String plan; // 1 Month, 3 Months, etc.
+	private LocalDate startDate;
+	private LocalDate expiryDate;
 
-    private Boolean active;
+	private Boolean active;
 
 	public Long getId() {
 		return id;
@@ -108,6 +107,5 @@ public class Member {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
-    
-    
+
 }

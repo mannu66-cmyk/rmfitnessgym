@@ -12,24 +12,25 @@ import com.gymnasium.FitnessRM.entity.Member;
 import com.gymnasium.FitnessRM.repository.MemberRepo;
 
 import jakarta.annotation.PostConstruct;
- @Component
+
+@Component
 public class StatusSchedular {
 
 	@Autowired
-    private MemberRepo memberRepo;
-	
+	private MemberRepo memberRepo;
+
 	@PostConstruct
 	void initials() {
 		statusChangeToExpired();
 	}
-	
+
 	@Scheduled(cron = "0 0 0 * * ?")
 	public void statusChangeToExpired() {
-		  List<Member> members= new ArrayList<>();
-	            members = memberRepo.findAll();
-	      for(Member member:members) {
-	    	  member.setActive(member.getExpiryDate().isAfter(LocalDate.now().minusDays(1)));
-	      }      
-	      memberRepo.saveAll(members);
+		List<Member> members = new ArrayList<>();
+		members = memberRepo.findAll();
+		for (Member member : members) {
+			member.setActive(member.getExpiryDate().isAfter(LocalDate.now().minusDays(1)));
+		}
+		memberRepo.saveAll(members);
 	}
 }

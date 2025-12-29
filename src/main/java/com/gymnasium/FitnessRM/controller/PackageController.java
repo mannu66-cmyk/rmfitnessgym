@@ -24,13 +24,17 @@ import com.gymnasium.FitnessRM.utils.JwtUtil;
 public class PackageController {
 
 	@Autowired
-    private PackageService packageService;
+	private PackageService packageService;
 
-    @GetMapping("/history")
-    public List<PackageResponse> history(
-        @RequestParam String mobile
-    ) {
-    	return packageService.getHistory(mobile);
-         
-    }
+	@GetMapping("/history")
+	public List<PackageResponse> history(@RequestParam String mobile) {
+		return packageService.getHistory(mobile);
+
+	}
+
+	@GetMapping("/agg")
+	public Integer aggregate(@RequestParam Integer param) {
+		return packageService.getAggregate(param);
+
+	}
 }

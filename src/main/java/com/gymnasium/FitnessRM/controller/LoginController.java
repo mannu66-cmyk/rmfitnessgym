@@ -16,39 +16,41 @@ import com.gymnasium.FitnessRM.utils.JwtUtil;
 @RequestMapping("/auth")
 public class LoginController {
 
-    @Autowired
-    private JwtUtil jwtUtil;
+	@Autowired
+	private JwtUtil jwtUtil;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
-        // Example validation (replace with DB logic)
-        if ("manoj@gmail.com".equals(request.getUsername())
-                && "password".equals(request.getPassword())) {
+		// Example validation (replace with DB logic)
+		if ("admin@gmail.com".equals(request.getUsername()) && "admin123".equals(request.getPassword())) {
 
-            String token = jwtUtil.generateToken(request.getUsername());
-            return ResponseEntity.ok(Map.of("token", token));
-        }
+			String token = jwtUtil.generateToken(request.getUsername());
+			return ResponseEntity.ok(Map.of("token", token));
+		}
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-    }
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+	}
 }
 
- class LoginRequest {
-    private String username;
-    private String password;
+class LoginRequest {
+	private String username;
+	private String password;
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-    
-}
 
+}

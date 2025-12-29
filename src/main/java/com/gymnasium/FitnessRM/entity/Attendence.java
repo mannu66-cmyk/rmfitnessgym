@@ -32,7 +32,7 @@ public class Attendence {
 
 	@Column
 	private LocalDate date;
-	
+
 	private LocalTime time;
 
 	public Long getId() {
