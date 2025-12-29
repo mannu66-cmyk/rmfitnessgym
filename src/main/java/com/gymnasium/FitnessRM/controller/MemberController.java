@@ -20,6 +20,7 @@ import com.gymnasium.FitnessRM.service.MemberService;
 
 @RestController
 @RequestMapping("/api/members")
+@CrossOrigin
 public class MemberController {
 
 	@Autowired
