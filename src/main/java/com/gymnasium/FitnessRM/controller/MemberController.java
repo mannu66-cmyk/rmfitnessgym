@@ -50,7 +50,9 @@ public class MemberController {
             m.getMobile(),
             m.getPlan(),
             m.getActive() ? "Active" : "Expired",
-            m.getExpiryDate()
+            m.getExpiryDate(),
+			m.getPin(),
+			m.getAge()
         );
     }
 }
