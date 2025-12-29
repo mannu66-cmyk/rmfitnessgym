@@ -13,6 +13,8 @@ public class MemberResponse {
     private String mobile;
     private String plan;
     private String status;
+	private String pin;
+    private Integer age;
     private LocalDate expiryDate;
 	 
 	public MemberResponse(String name, String mobile, String plan, String status, LocalDate expiryDate) {
@@ -53,6 +55,16 @@ public class MemberResponse {
 	public void setExpiryDate(LocalDate expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-    
-    
+	public String getPin() {
+		return pin;
+	}
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 }
