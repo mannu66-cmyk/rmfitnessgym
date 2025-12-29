@@ -8,17 +8,15 @@ import lombok.Setter;
  
 @Getter
 @Setter
-public class AttendenceResponse {
+public class PackageResponse {
     private String date;
     private String name;
-    private String mobile;
-    private String time;
-	public AttendenceResponse( String name, String mobile ,String date, String time) {
+    private Integer price;
+	public PackageResponse( String name, Integer price ,String date) {
 		 
 		this.date = date;
 		this.name = name;
-		this.mobile = mobile;
-		this.time = time;
+		this.price = price;
 	}
 	public String getDate() {
 		return date;
@@ -32,18 +30,13 @@ public class AttendenceResponse {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getMobile() {
-		return mobile;
+	public Integer getPrice() {
+		return price;
 	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
      
+	
 }
  

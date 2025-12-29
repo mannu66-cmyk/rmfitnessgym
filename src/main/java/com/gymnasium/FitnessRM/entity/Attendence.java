@@ -1,6 +1,7 @@
 package com.gymnasium.FitnessRM.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,24 +11,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "attendence",schema = "gym")
-@Getter @Setter
+@Table(name = "attendence", schema = "gym", uniqueConstraints = {
+		@UniqueConstraint(name = "UniqueMemberAttendancePerDay", columnNames = { "member_id", "date" }) })
+@Getter
+@Setter
 public class Attendence {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @JoinColumn 
-    @ManyToOne
-    private Member member;
-    
-    @Column
-    private LocalDate date;
+	@JoinColumn
+	@ManyToOne
+	private Member member;
+
+	@Column
+	private LocalDate date;
+	
+	private LocalTime time;
 
 	public Long getId() {
 		return id;
@@ -52,7 +58,13 @@ public class Attendence {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-    
-    
-    
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
 }

@@ -22,8 +22,6 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/attendance")
-@RequiredArgsConstructor
-@CrossOrigin
 public class AttendenceController {
 
 	@Autowired

@@ -15,6 +15,7 @@ public class MemberRequest {
     private String pin;
     private String plan;
     private LocalDate startDate;
+    private Integer price;
 	public String getName() {
 		return name;
 	}
@@ -51,6 +52,11 @@ public class MemberRequest {
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
-    
+	public Integer getPrice() {
+		return price;
+	}
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
     
 }

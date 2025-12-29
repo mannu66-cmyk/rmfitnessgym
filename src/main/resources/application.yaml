@@ -2,7 +2,7 @@ spring:
   application:
     name: FitnessRM
   datasource:
-    url: jdbc:postgresql://my-postgres-db.c7w0aoa0u399.ap-south-1.rds.amazonaws.com/postgres
+    url: jdbc:postgresql://my-postgres-db.c7w0aoa0u399.ap-south-1.rds.amazonaws.com/gymdb
     username: postgres
     password: Manojrawat05
   jpa:

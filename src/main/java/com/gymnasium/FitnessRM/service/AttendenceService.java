@@ -1,6 +1,7 @@
 package com.gymnasium.FitnessRM.service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,7 @@ public class AttendenceService {
         Attendence attendance = new Attendence();
         attendance.setMember(member);
         attendance.setDate(LocalDate.now());
+        attendance.setTime(LocalTime.now());
 
         attendanceRepo.save(attendance);
         return "Attendance marked successfully.";
@@ -64,7 +66,7 @@ public class AttendenceService {
        List<Map<String, Object>> datas = attendanceRepo.findByMobileAndDate(mobile ,start ,now); 
         for(Map<String, Object> data:datas) {
         	attendences.add(new AttendenceResponse( data.get("name").toString(),
-data.get("mobile").toString(),data.get("date").toString()));  }
+data.get("mobile").toString(),data.get("date").toString(),data.get("time").toString()));  }
         return attendences;
     }
 }

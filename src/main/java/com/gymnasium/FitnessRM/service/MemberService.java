@@ -11,6 +11,8 @@ import com.gymnasium.FitnessRM.entity.Member;
 import com.gymnasium.FitnessRM.models.MemberRequest;
 import com.gymnasium.FitnessRM.models.MemberResponse;
 import com.gymnasium.FitnessRM.repository.MemberRepo;
+import com.gymnasium.FitnessRM.repository.PackageRepo;
+import com.gymnasium.FitnessRM.entity.Package;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +22,8 @@ public class MemberService {
 
 	@Autowired
     private MemberRepo memberRepo;
+	@Autowired
+    private PackageRepo packageRepo;
 
     public void saveOrUpdate(MemberRequest req) {
 
@@ -34,12 +38,13 @@ public class MemberService {
         member.setStartDate(req.getStartDate());
 
         // Calculate expiry
-        member.setExpiryDate(calculateExpiry(req.getStartDate(), req.getPlan()));
+        member.setExpiryDate(calculateExpiry(member.getExpiryDate()!=null? member.getExpiryDate():req.getStartDate(), req.getPlan()));
 
         // Active or Expired
         member.setActive(member.getExpiryDate().isAfter(LocalDate.now().plusDays(1)));
 
-        memberRepo.save(member);
+        Package p= new Package( req.getPrice(), LocalDate.now(),member,req.getPlan());
+        packageRepo.save(p);
     }
 
     public List<MemberResponse> getAll(String filter) {
@@ -54,14 +59,15 @@ public class MemberService {
             members = memberRepo.findAll();
 
         return members.stream()
-            .map(m -> new MemberResponse(
+            .map(m -> new MemberResponse(m.getId(),
                 m.getName(),
                 m.getMobile(),
                 m.getPlan(),
                 m.getActive() ? "Active" : "Expired",
-                m.getExpiryDate(),
 				m.getPin(),
-				m.getAge()
+				m.getAge(),
+				m.getStartDate(),
+				  m.getExpiryDate()
             ))
             .collect(Collectors.toList());
     }
