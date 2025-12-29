@@ -58,13 +58,13 @@ public class MemberResponse {
 		this.expiryDate = expiryDate;
 	}
 	public String getPin() {
-		return pin;
+		return this.pin;
 	}
 	public void setPin(String pin) {
 		this.pin = pin;
 	}
 	public Integer getAge() {
-		return age;
+		return this.age;
 	}
 	public void setAge(Integer age) {
 		this.age = age;
