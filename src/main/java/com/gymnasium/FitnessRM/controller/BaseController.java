@@ -8,7 +8,7 @@ import com.gymnasium.FitnessRM.utils.JwtUtil;
 @RestController
 public class BaseController {
 
-	@GetMapping
+	@GetMapping("/health")
 	public String check() {
 
 		return "running..........";

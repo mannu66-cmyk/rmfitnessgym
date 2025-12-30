@@ -20,3 +20,12 @@ server:
 jwt:
   secret: mySuperSecretKeyForJWTGeneration123456
   expiration: 86400000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
