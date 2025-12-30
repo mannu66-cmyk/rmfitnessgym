@@ -11,6 +11,6 @@ public class BaseController {
 	@GetMapping("/health")
 	public String check() {
 
-		return "running..........";
+		return "It's running..........";
 	}
 }
