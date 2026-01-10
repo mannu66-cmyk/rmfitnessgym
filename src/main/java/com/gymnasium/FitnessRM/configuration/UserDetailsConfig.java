@@ -14,7 +14,7 @@ public class UserDetailsConfig {
 	@Bean
 	public UserDetailsService userDetailsService(PasswordEncoder encoder) {
 
-		UserDetails user = User.builder().username("admin@gmail.com").password(encoder.encode("admin123"))
+		UserDetails user = User.builder().username("admin123@gmail.com").password(encoder.encode("Manoj05@"))
 				.roles("ADMIN").build();
 
 		return new InMemoryUserDetailsManager(user);
