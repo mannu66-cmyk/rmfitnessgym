@@ -25,7 +25,7 @@ public class LoginController {
 	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 
 		// Example validation (replace with DB logic)
-		if ("admin@gmail.com".equals(request.getUsername()) && "admin123".equals(request.getPassword())) {
+		if ("admin123@gmail.com".equals(request.getUsername()) && "Manoj05@".equals(request.getPassword())) {
 
 			String token = jwtUtil.generateToken(request.getUsername());
 			return ResponseEntity.ok(Map.of("token", token));
